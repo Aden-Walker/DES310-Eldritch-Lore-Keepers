@@ -42,15 +42,8 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-<<<<<<< HEAD
-    uniqueID: 510460063
-    locked: 0
-  - name: Objects
-    uniqueID: 955495711
-    locked: 0
-  - name: Foreground
-    uniqueID: 2623210761
-=======
+
+
     uniqueID: 38678583
     locked: 0
   - name: Sprites
@@ -58,5 +51,6 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3200333647
->>>>>>> a8044cecc91ee04df18ea75dcbc70e6ac8e12b3e
+
+
     locked: 0
