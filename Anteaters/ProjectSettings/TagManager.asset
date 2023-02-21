@@ -42,15 +42,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-
-
-    uniqueID: 38678583
+    uniqueID: 1
     locked: 0
   - name: Sprites
-    uniqueID: 2968011871
+    uniqueID: 1
     locked: 0
-  - name: Foreground
-    uniqueID: 3200333647
-
-
+  - name: Foregroun
+    uniqueID: 2364803285
     locked: 0
