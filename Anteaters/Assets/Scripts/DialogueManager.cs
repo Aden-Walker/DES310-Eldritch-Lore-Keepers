@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+    public Animator animator;
     
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class DialogueManager : MonoBehaviour
     {
         //send text with name of object to name text public variable
         
-        Debug.Log("Print text with name " + dialogue.name);
+        
         nameText.text = dialogue.name;
 
         _sentences.Clear();
@@ -30,7 +31,7 @@ public class DialogueManager : MonoBehaviour
         {
             _sentences.Enqueue(sentence);
         }
-        
+        animator.SetBool("IsOpen", true);
         DisplaySentence();
     }
 
@@ -50,7 +51,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        Debug.Log("Finished text");
+        animator.SetBool("IsOpen", false);
     }
 
 }
