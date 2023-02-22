@@ -1,15 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-
 public class DialogueManager : MonoBehaviour
 {
     //Create variable to hold text box strings
     private Queue<string> _sentences;
 
-    public Text nameText;
-    public Text dialogueText;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI dialogueText;
     
 
     // Start is called before the first frame update
@@ -23,16 +21,17 @@ public class DialogueManager : MonoBehaviour
     {
         //send text with name of object to name text public variable
         
-        //Debug.Log("Print text with name " + dialogue.Name);
-        nameText.text = dialogue.Name;
-        
+        Debug.Log("Print text with name " + dialogue.name);
+        nameText.text = dialogue.name;
+
         _sentences.Clear();
 
-        foreach (string sentence in dialogue.Sentences)
+        foreach (string sentence in dialogue.sentences)
         {
             _sentences.Enqueue(sentence);
         }
         
+        DisplaySentence();
     }
 
     public void DisplaySentence()
@@ -40,7 +39,6 @@ public class DialogueManager : MonoBehaviour
         if (_sentences.Count == 0)
         {
             EndDialogue();
-            return;
         }
         else
         {

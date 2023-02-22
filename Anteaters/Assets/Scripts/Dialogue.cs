@@ -7,9 +7,9 @@ using UnityEngine;
 public class Dialogue
 {
     //Add public variables for use in editor
-    
-    public string[] Sentences;
-    
     [TextArea(minLines:3, maxLines:10)]
-    public string Name;
+    public string[] sentences;
+    
+ 
+    public string name;
 }
