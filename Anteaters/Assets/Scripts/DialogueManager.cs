@@ -6,7 +6,7 @@ public class DialogueManager : MonoBehaviour
 {
     //Create variable to hold text box strings
     private Queue<string> _sentences;
-
+    
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
@@ -57,12 +57,13 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return null;
+            yield return 0.3;
         }
     }
 
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+        
     }
 }
