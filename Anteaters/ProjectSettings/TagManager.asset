@@ -47,6 +47,6 @@ TagManager:
   - name: Sprites
     uniqueID: 1
     locked: 0
-  - name: Foregroun
+  - name: Foreground
     uniqueID: 2364803285
     locked: 0
