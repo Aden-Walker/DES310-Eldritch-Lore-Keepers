@@ -46,8 +46,9 @@ public class DialogueManager : MonoBehaviour
         {
             string sentence  = _sentences.Dequeue();
             Debug.Log(sentence);
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(sentence));
+            //StopAllCoroutines();
+            //StartCoroutine(TypeSentence(sentence));
+            dialogueText.text = sentence;
         }
     }
 
@@ -64,6 +65,5 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
-        
     }
 }
