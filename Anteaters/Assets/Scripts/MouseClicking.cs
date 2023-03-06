@@ -13,7 +13,7 @@ public class MouseClicking : MonoBehaviour
         positionToMoveTo = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         moveX = 0.0f;
         moveY = 0.0f;
-        speed = 2.0f;
+        speed = 20.0f;
         conversionX = 900.0f;
         conversionY = 1600.0f;
 
