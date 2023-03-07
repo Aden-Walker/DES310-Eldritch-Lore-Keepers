@@ -6,13 +6,12 @@ public class MouseClicking : MonoBehaviour
 {
 
     Vector3 positionToMoveTo;
-    float moveX, moveY, speed, conversionX, conversionY;
+    float moveX, speed, conversionX, conversionY;
     void Start()
     {
 
         positionToMoveTo = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         moveX = 0.0f;
-        moveY = 0.0f;
         speed = 20.0f;
         conversionX = 900.0f;
         conversionY = 1600.0f;
@@ -21,7 +20,7 @@ public class MouseClicking : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        if ((Input.GetMouseButtonDown(0)) && (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(gameObject.transform.position).z)).y < 0))
         {
 
             var hit = new RaycastHit();
@@ -56,26 +55,7 @@ public class MouseClicking : MonoBehaviour
 
         }
 
-        if (positionToMoveTo.y - transform.position.y > 0.0f)
-        {
-
-            moveY = Mathf.Min((positionToMoveTo.y - transform.position.y) / conversionY + transform.position.y, speed / conversionY + transform.position.y);
-
-        }
-        else if (positionToMoveTo.y - transform.position.y < 0.0f)
-        {
-
-            moveY = Mathf.Max((positionToMoveTo.y - transform.position.y) / conversionY + transform.position.y, -speed / conversionY + transform.position.y);
-
-        }
-        else
-        {
-
-            moveY = 0.0f;
-
-        }
-
-        transform.position = new Vector3(moveX, moveY, transform.position.z);
+        transform.position = new Vector3(moveX, -3.0f, transform.position.z);
 
     }
 }
