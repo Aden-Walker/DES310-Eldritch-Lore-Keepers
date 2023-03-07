@@ -8,6 +8,8 @@ public class Transition : MonoBehaviour
 {
 
     public GameObject transitionSquare;
+    public GameObject foreground;
+    public GameObject background;
     private bool transitioned = false;
 
 
@@ -39,18 +41,31 @@ public class Transition : MonoBehaviour
     //coroutine to fade to black lower speed = slower transition time
     public IEnumerator TransitionScene(bool fadeToBlack = true, int fadeSpeed = 1)
     {
-        //stores the transition squares 
+        //stores the colours of the transition square, background and foreground
         Color objectColour = transitionSquare.GetComponent<Image>().color;
-        float fadeAmount;
+        Color bgColour = background.GetComponent<SpriteRenderer>().color;
+        Color fgColour = foreground.GetComponent<SpriteRenderer>().color;
 
+        //intialises floats for the fade amounts
+        float fadeAmount;
+        float inverseFadeAmount;
+
+        //if we are fading to black
         if(fadeToBlack)
         {
+            // while the transition square's alpha is less than 1
             while(transitionSquare.GetComponent<Image>().color.a < 1)
             {
+                //increase the fade amount value
                 fadeAmount = objectColour.a + (fadeSpeed * Time.deltaTime);
+                inverseFadeAmount = 1 - fadeAmount;
 
                 objectColour = new Color(objectColour.r, objectColour.g, objectColour.b, fadeAmount);
                 transitionSquare.GetComponent<Image>().color = objectColour;
+                bgColour = new Color(bgColour.r, bgColour.g, bgColour.b, inverseFadeAmount);
+                background.GetComponent<SpriteRenderer>().color = bgColour;
+                fgColour = new Color(fgColour.r, fgColour.g, fgColour.b, inverseFadeAmount);
+                foreground.GetComponent<SpriteRenderer>().color = fgColour;
                 yield return null;
             }
         }
@@ -59,6 +74,7 @@ public class Transition : MonoBehaviour
             while (transitionSquare.GetComponent<Image>().color.a > 0)
             {
                 fadeAmount = objectColour.a - (fadeSpeed * Time.deltaTime);
+                inverseFadeAmount = 0 + fadeAmount;
 
                 objectColour = new Color(objectColour.r, objectColour.g, objectColour.b, fadeAmount);
                 transitionSquare.GetComponent<Image>().color = objectColour;
