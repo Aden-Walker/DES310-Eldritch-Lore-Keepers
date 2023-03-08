@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class MouseClicking : MonoBehaviour
 {
+    //more or less the player class
+
+    Animator animator;
 
     Vector3 positionToMoveTo;
     float moveX, speed, conversionX, conversionY;
     void Start()
     {
-
-        positionToMoveTo = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        animator = GetComponent<Animator>();
+        //positionToMoveTo = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         moveX = 0.0f;
         speed = 20.0f;
         conversionX = 900.0f;
@@ -19,7 +22,7 @@ public class MouseClicking : MonoBehaviour
     }
     void Update()
     {
-
+        bool moving = false;
         if ((Input.GetMouseButtonDown(0)) && (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(gameObject.transform.position).z)).y < 0))
         {
 
@@ -31,7 +34,6 @@ public class MouseClicking : MonoBehaviour
             float distanceToScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen));
             positionToMoveTo = new Vector3(curPosition.x, curPosition.y, transform.position.z);
-
             //clickPosition.position = Input.mousePosition;
             //this gives a point that can be used as a component in other objects
         }
@@ -40,21 +42,23 @@ public class MouseClicking : MonoBehaviour
         {
 
             moveX = Mathf.Min((positionToMoveTo.x - transform.position.x) / conversionX + transform.position.x, speed / conversionX + transform.position.x);
-
+            moving = true;
         }
         else if (positionToMoveTo.x - transform.position.x < 0.0f)
         {
 
             moveX = Mathf.Max((positionToMoveTo.x - transform.position.x) / conversionX + transform.position.x, -speed / conversionX + transform.position.x);
-
+            moving = true;
         }
         else
         {
 
             moveX = 0.0f;
-
+            moving = false;
         }
 
+
+        animator.SetBool("IsMoving", moving);
         transform.position = new Vector3(moveX, -3.0f, transform.position.z);
 
     }
