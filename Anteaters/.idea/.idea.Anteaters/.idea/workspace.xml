@@ -42,7 +42,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../DES310-Eldritch-Lore-Keepers\Anteaters.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../Anteaters.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="E:\University stuff\DES310\DES310-Eldritch-Lore-Keepers" />
       <option name="PASS_PARENT_ENVS" value="1" />
