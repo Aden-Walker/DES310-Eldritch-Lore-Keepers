@@ -10,10 +10,12 @@ public class MouseClicking : MonoBehaviour
 
     Vector3 positionToMoveTo;
     float moveX, speed, conversionX, conversionY;
+    bool facingRight = true;
     void Start()
     {
         animator = GetComponent<Animator>();
-        //positionToMoveTo = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(-4.25f, transform.position.y, transform.position.z);
         moveX = 0.0f;
         speed = 20.0f;
         conversionX = 900.0f;
@@ -42,25 +44,60 @@ public class MouseClicking : MonoBehaviour
         {
 
             moveX = Mathf.Min((positionToMoveTo.x - transform.position.x) / conversionX + transform.position.x, speed / conversionX + transform.position.x);
+
+            if (!facingRight)
+            {
+
+                Flip();
+                facingRight = true;
+
+            }
+
             moving = true;
         }
         else if (positionToMoveTo.x - transform.position.x < 0.0f)
         {
 
             moveX = Mathf.Max((positionToMoveTo.x - transform.position.x) / conversionX + transform.position.x, -speed / conversionX + transform.position.x);
+            
+            if (facingRight)
+            {
+
+                Flip();
+                facingRight = false;
+
+            }
+
             moving = true;
+        }
+        else if (Mathf.Abs(positionToMoveTo.x - transform.position.x) < 0.01f)
+        {
+
+            moveX = transform.position.x;
+            moving = false;
         }
         else
         {
 
-            moveX = 0.0f;
+            moveX = transform.position.x;
             moving = false;
+
         }
 
 
         animator.SetBool("IsMoving", moving);
-        transform.position = new Vector3(moveX, -3.0f, transform.position.z);
+        transform.position = new Vector3(moveX, -2.2f, transform.position.z);
 
     }
-}
 
+    void Flip()
+    {
+
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+
+    }
+
+}
