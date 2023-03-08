@@ -13,7 +13,7 @@ public class MouseClicking : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        //positionToMoveTo = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z);
         moveX = 0.0f;
         speed = 20.0f;
         conversionX = 900.0f;
@@ -50,16 +50,23 @@ public class MouseClicking : MonoBehaviour
             moveX = Mathf.Max((positionToMoveTo.x - transform.position.x) / conversionX + transform.position.x, -speed / conversionX + transform.position.x);
             moving = true;
         }
-        else
+        else if (Mathf.Abs(positionToMoveTo.x - transform.position.x) < 0.01f)
         {
 
             moveX = 0.0f;
             moving = false;
         }
+        else
+        {
+
+            moveX = 0.0f;
+            moving = false;
+
+        }
 
 
         animator.SetBool("IsMoving", moving);
-        transform.position = new Vector3(moveX, -3.0f, transform.position.z);
+        transform.position = new Vector3(moveX, -2.2f, transform.position.z);
 
     }
 }
