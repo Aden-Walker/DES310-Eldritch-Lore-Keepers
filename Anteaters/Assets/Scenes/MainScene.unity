@@ -1852,11 +1852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e135ddefb3478af4c98962cd2a403c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObject: {fileID: 101467498}
-  trackingSpeed: 5
-  trackingOffset: {x: 8.5, y: 0}
-  boundLeft: {x: 0, y: 0}
-  boundRight: {x: 9.22, y: 0}
+  parallaxFactor: 0.9
+  cam: {fileID: 101467498}
 --- !u!1 &828049070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,11 +2644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e135ddefb3478af4c98962cd2a403c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObject: {fileID: 101467498}
-  trackingSpeed: 2
-  trackingOffset: {x: 9, y: 0}
-  boundLeft: {x: 0, y: 0}
-  boundRight: {x: 10, y: 0}
+  parallaxFactor: 0.6
+  cam: {fileID: 101467498}
 --- !u!1 &1779536883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,11 +2890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e135ddefb3478af4c98962cd2a403c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObject: {fileID: 101467498}
-  trackingSpeed: 1
-  trackingOffset: {x: 8.5, y: 0}
-  boundLeft: {x: 0, y: 0}
-  boundRight: {x: 17.7, y: 0}
+  parallaxFactor: 0.3
+  cam: {fileID: 101467498}
 --- !u!1 &1939781283
 GameObject:
   m_ObjectHideFlags: 0
