@@ -34,8 +34,11 @@ public class Transition : MonoBehaviour
     //called when the object the script is attached to is collided with
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(TransitionScene());
-        Debug.Log("Trigger Called");
+        if (collision.name != "Path")
+        {
+            StartCoroutine(TransitionScene());
+            Debug.Log("Trigger Called");
+        }
     }
 
     //coroutine to fade to black lower speed = slower transition time
