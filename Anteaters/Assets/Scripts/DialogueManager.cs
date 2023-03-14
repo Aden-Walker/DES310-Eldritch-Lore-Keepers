@@ -10,10 +10,10 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
+    public float timeDelay;
 
-    private bool finishedSentence;
-    private string currentString;
-
+    private string currentText = "";
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,44 +37,62 @@ public class DialogueManager : MonoBehaviour
 
         //move the text box down
         animator.SetBool("IsOpen", true);
-        DisplaySentence();
+        LoadNext();
+    }
+
+    public void LoadNext()
+    {
+        //load next sentence in queue
+        currentText = _sentences.Dequeue();
+        Debug.Log(currentText);
+        //type sentence with typewriter effect
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(currentText, timeDelay));
     }
 
     public void DisplaySentence()
-    {   
-        //check if there is a sentence to display
-        if (_sentences.Count == 0)
+    {
+        //check if the coroutine has finished adding text to the text box
+        if (currentText == dialogueText.text)
         {
-            //close text box
-            EndDialogue();
+            //check if there is a sentence to display
+            if (_sentences.Count == 0)
+            {
+                //close text box
+                EndDialogue();
+            }
+            else
+            {
+                LoadNext();
+            }
         }
-        else 
-        {   
-            //load next sentence in queue
-            string sentence = _sentences.Dequeue();
-            Debug.Log(sentence);
-            //type sentence with typewriter effect
-            finishedSentence = false;
+        else
+        {
             StopAllCoroutines();
-            StartCoroutine(TypeSentence(sentence));
+            dialogueText.text = currentText;
         }
     }
 
-    IEnumerator TypeSentence(string sentence)
+    private IEnumerator TypeSentence(string sentence, float timeDelay)
     {
+        // set initial text to be blank
         dialogueText.text = "";
+        
+        // start a loop that runs frame independent
         foreach (char letter in sentence.ToCharArray())
         {
-             dialogueText.text += letter;
-            
-             yield return new WaitForSeconds(0.05f);
+            //add next letter to text box
+            dialogueText.text += letter;
 
+            //wait for time delay in seconds
+            yield return new WaitForSeconds(timeDelay);
         }
-        finishedSentence = true;
+        
     }
 
     void EndDialogue()
     {
+        //close text box
         animator.SetBool("IsOpen", false);
     }
 }
