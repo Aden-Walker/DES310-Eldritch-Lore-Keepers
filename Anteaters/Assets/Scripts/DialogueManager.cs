@@ -10,7 +10,9 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
-    
+
+    private bool finishedSentence;
+    private string currentString;
 
     // Start is called before the first frame update
     void Start()
@@ -21,34 +23,40 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        //send text with name of object to name text public variable
-        
-        
+        //send text with name of object to name text public variable        
         nameText.text = dialogue.name;
 
+        //clear dialogue from previous text box
         _sentences.Clear();
 
+        //add sentences to queue
         foreach (string sentence in dialogue.sentences)
         {
             _sentences.Enqueue(sentence);
         }
+
+        //move the text box down
         animator.SetBool("IsOpen", true);
         DisplaySentence();
     }
 
     public void DisplaySentence()
-    {
+    {   
+        //check if there is a sentence to display
         if (_sentences.Count == 0)
         {
+            //close text box
             EndDialogue();
         }
-        else
-        {
-            string sentence  = _sentences.Dequeue();
+        else 
+        {   
+            //load next sentence in queue
+            string sentence = _sentences.Dequeue();
             Debug.Log(sentence);
+            //type sentence with typewriter effect
+            finishedSentence = false;
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence));
-            //dialogueText.text = sentence;
         }
     }
 
@@ -57,9 +65,12 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+             dialogueText.text += letter;
+            
+             yield return new WaitForSeconds(0.05f);
+
         }
+        finishedSentence = true;
     }
 
     void EndDialogue()
