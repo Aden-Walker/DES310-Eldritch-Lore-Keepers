@@ -36,6 +36,10 @@ public class CameraTracking : MonoBehaviour
                 if (modTracked.x > 17.72)
                     modTracked.x = 17.72f;
                break;
+            case 2:
+                if (modTracked.x > 17.73)
+                    modTracked.x = 17.73f;
+                break;
 
         }
         //lock the camera's y value, can be handled in the scene switch if we want to introduce verticality
