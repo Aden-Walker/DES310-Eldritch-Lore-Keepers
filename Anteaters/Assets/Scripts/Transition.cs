@@ -10,32 +10,73 @@ public class Transition : MonoBehaviour
     public GameObject transitionSquare;
     public GameObject foreground;
     public GameObject background;
+    public GameObject choiceOne;
+    public GameObject choiceTwo;
     private bool transitioned = false;
-
-
-
+    private int sceneToGoTo;
+    
+    
     // Update is called once per frame
     void Update()
     {
+     
         // checks if the transition has been completed
         if (transitioned)
-        {
-            //moves to the next scene, switch statement for future use
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            switch (currentScene)
-            {
-                case 1:
-                    SceneManager.LoadScene(2);
-                    break;
-            }
+        { 
+            SceneManager.LoadScene(sceneToGoTo);
         }
     }
 
     //called when the object the script is attached to is collided with
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(TransitionScene());
+        Vector3 buttonOneStartPos = choiceOne.transform.position;
+        Vector3 buttonTwoStartPos = choiceTwo.transform.position;
+        Vector3 buttonOneEndPos = new Vector3(buttonOneStartPos.x, 0, buttonOneStartPos.z);
+        Vector3 buttonTwoEndPos = new Vector3(buttonTwoStartPos.x, 0, buttonOneEndPos.z);
+
+        StartCoroutine(ActivateChoices(buttonOneStartPos, buttonOneEndPos, buttonTwoStartPos, buttonTwoEndPos));
         Debug.Log("Trigger Called");
+    }
+
+    public IEnumerator ActivateChoices(Vector3 buttonOneStart, Vector3 buttonOneEnd, Vector3 buttonTwoStart, Vector3 buttonTwoEnd, int fadeSpeed = 1, float fractionOfJourney = 0.0f)
+    {
+        //pretty much the same as the transition code might modify to make the choice slide into place instead of fading
+
+        Color choiceColour = choiceOne.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+
+        while (choiceOne.GetComponent<SpriteRenderer>().color.a < 1)
+        {
+            fadeAmount = choiceColour.a + (fadeSpeed * Time.deltaTime);
+
+            choiceColour = new Color(choiceColour.r, choiceColour.g, choiceColour.b, fadeAmount);
+            choiceOne.GetComponent<SpriteRenderer>().color = choiceColour;
+            choiceTwo.GetComponent<SpriteRenderer>().color = choiceColour;
+            yield return null;
+        }
+
+
+
+        //while (fractionOfJourney< 1)
+        //{
+        //    fractionOfJourney += Time.deltaTime;
+
+        //    choiceOne.transform.position = Vector3.Lerp(buttonOneStart, buttonOneEnd, fractionOfJourney);
+        //    choiceTwo.transform.position = Vector3.Lerp(buttonTwoStart, buttonTwoEnd, fractionOfJourney);
+
+        //    yield return null;
+        //}
+
+
+        yield return new WaitForEndOfFrame();
+    }
+
+    // function to be called by the transition arrow object
+    public void handleTransition(int scene)
+    {
+        sceneToGoTo = scene;
+        StartCoroutine(TransitionScene());
     }
 
     //coroutine to fade to black lower speed = slower transition time
@@ -45,6 +86,8 @@ public class Transition : MonoBehaviour
         Color objectColour = transitionSquare.GetComponent<Image>().color;
         Color bgColour = background.GetComponent<SpriteRenderer>().color;
         Color fgColour = foreground.GetComponent<SpriteRenderer>().color;
+
+        
 
         //intialises floats for the fade amounts
         float fadeAmount;
