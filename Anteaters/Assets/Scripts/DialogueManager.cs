@@ -93,7 +93,10 @@ public class DialogueManager : MonoBehaviour
 
             //wait for time delay before doing next iteration
             yield return new WaitForSeconds(timeDelay);
+            Debug.Log("sasdfahasdiofuhsdaf");
         }
+
+        yield break;
 
     }
 
