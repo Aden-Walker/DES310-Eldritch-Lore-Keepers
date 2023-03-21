@@ -30,6 +30,7 @@ public class Transition : MonoBehaviour
     //called when the object the script is attached to is collided with
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         Vector3 buttonOneStartPos = choiceOne.transform.position;
         Vector3 buttonTwoStartPos = choiceTwo.transform.position;
         Vector3 buttonOneEndPos = new Vector3(buttonOneStartPos.x, 0, buttonOneStartPos.z);
@@ -37,6 +38,7 @@ public class Transition : MonoBehaviour
 
         StartCoroutine(ActivateChoices(buttonOneStartPos, buttonOneEndPos, buttonTwoStartPos, buttonTwoEndPos));
         Debug.Log("Trigger Called");
+
     }
 
     public IEnumerator ActivateChoices(Vector3 buttonOneStart, Vector3 buttonOneEnd, Vector3 buttonTwoStart, Vector3 buttonTwoEnd, int fadeSpeed = 1, float fractionOfJourney = 0.0f)
