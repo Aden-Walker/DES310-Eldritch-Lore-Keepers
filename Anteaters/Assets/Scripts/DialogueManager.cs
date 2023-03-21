@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour
     //Create variable to hold text box strings
     private Queue<string> _sentences;
     
+    //public editor variables and links to ui
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
@@ -44,10 +45,12 @@ public class DialogueManager : MonoBehaviour
     {
         //load next sentence in queue
         currentText = _sentences.Dequeue();
+
         Debug.Log(currentText);
+
         //type sentence with typewriter effect
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(currentText, timeDelay));
+        StartCoroutine(TypeSentence(currentText));
     }
 
     public void DisplaySentence()
@@ -68,26 +71,30 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Stopping coroutine and displaying full text");
             StopAllCoroutines();
             dialogueText.text = currentText;
         }
     }
 
-    private IEnumerator TypeSentence(string sentence, float timeDelay)
+    private IEnumerator TypeSentence(string sentence)
     {
         // set initial text to be blank
         dialogueText.text = "";
         
+        Debug.Log("coroutine sentence: " + sentence);
+
         // start a loop that runs frame independent
         foreach (char letter in sentence.ToCharArray())
         {
-            //add next letter to text box
+            //add next letter to text box text
             dialogueText.text += letter;
+            Debug.Log(dialogueText.text);
 
-            //wait for time delay in seconds
+            //wait for time delay before doing next iteration
             yield return new WaitForSeconds(timeDelay);
         }
-        
+
     }
 
     void EndDialogue()
