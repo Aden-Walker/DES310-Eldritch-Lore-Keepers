@@ -30,7 +30,7 @@ public class MouseClicking : MonoBehaviour
     void Update()
     {
         //check if the mouse has been clicked and that the player is not currently moving
-        if (Input.GetMouseButtonDown(0) && moving == false)
+        if (Input.GetMouseButtonDown(0))
         {
             //set the start time to when the time when the mouse was clicked
             startTime = Time.time;
@@ -69,18 +69,30 @@ public class MouseClicking : MonoBehaviour
         {
             //set the current distance covered to the difference between the current time and the start time
             distCovered = (Time.time - startTime) * speed;
+            
+            float prevfoJ = fractionOfJourney;
+
             //set the fraction of the journey covered
             fractionOfJourney = distCovered / journeyLength;
 
-            RaycastHit2D hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.up); //A raycast for detection
 
-            /*if ((hit.collider.name != "Path") || ((hit.collider.name == "Path") && (hit.distance > 0.1f)))
+            LayerMask mask = LayerMask.GetMask("Default");
+
+            RaycastHit2D hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.up, Mathf.Infinity, mask); //A raycast for detection
+
+            if ((hit.collider != null) && (hit.collider.name == "Path"))
             {
 
-                fractionOfJourney = 0;
-                moving = false;
+                if (hit.distance > 0.0f)
+                {
 
-            }*/
+                    fractionOfJourney = prevfoJ;
+                    moving = false;
+
+                }
+
+
+            }
 
             //lerp the player's positiong using the start position, the position to move to and the current fraction of the journey
             transform.position = Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney);
