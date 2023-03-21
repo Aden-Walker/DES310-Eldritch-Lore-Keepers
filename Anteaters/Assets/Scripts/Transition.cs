@@ -58,7 +58,7 @@ public class Transition : MonoBehaviour
 
 
 
-        //while (fractionOfJourney< 1)
+        //while (fractionOfJourney < 1)
         //{
         //    fractionOfJourney += Time.deltaTime;
 
