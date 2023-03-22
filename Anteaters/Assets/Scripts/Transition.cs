@@ -38,15 +38,16 @@ public class Transition : MonoBehaviour
     //called when the object the script is attached to is collided with
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.name != "Path")
+        {
+            Vector3 buttonOneStartPos = choiceOne.transform.position;
+            Vector3 buttonTwoStartPos = choiceTwo.transform.position;
+            Vector3 buttonOneEndPos = new Vector3(buttonOneStartPos.x, 0, buttonOneStartPos.z);
+            Vector3 buttonTwoEndPos = new Vector3(buttonTwoStartPos.x, 0, buttonOneEndPos.z);
 
-        Vector3 buttonOneStartPos = choiceOne.transform.position;
-        Vector3 buttonTwoStartPos = choiceTwo.transform.position;
-        Vector3 buttonOneEndPos = new Vector3(buttonOneStartPos.x, 0, buttonOneStartPos.z);
-        Vector3 buttonTwoEndPos = new Vector3(buttonTwoStartPos.x, 0, buttonOneEndPos.z);
-
-        StartCoroutine(ActivateChoices(buttonOneStartPos, buttonOneEndPos, buttonTwoStartPos, buttonTwoEndPos));
-        Debug.Log("Trigger Called");
-
+            StartCoroutine(ActivateChoices(buttonOneStartPos, buttonOneEndPos, buttonTwoStartPos, buttonTwoEndPos));
+            Debug.Log("Trigger Called");
+        }
     }
 
     public IEnumerator ActivateChoices(Vector3 buttonOneStart, Vector3 buttonOneEnd, Vector3 buttonTwoStart, Vector3 buttonTwoEnd, int fadeSpeed = 1, float fractionOfJourney = 0.0f)
@@ -63,6 +64,7 @@ public class Transition : MonoBehaviour
             choiceColour = new Color(choiceColour.r, choiceColour.g, choiceColour.b, fadeAmount);
             choiceOne.GetComponent<SpriteRenderer>().color = choiceColour;
             choiceTwo.GetComponent<SpriteRenderer>().color = choiceColour;
+            choiceUI.GetComponent<SpriteRenderer>().color = choiceColour;
             yield return null;
         }
 
@@ -90,6 +92,9 @@ public class Transition : MonoBehaviour
         sceneToGoTo = scene;
         if (buttonsFaded)
         {
+            choiceOne.GetComponent<SpriteRenderer>().color = new Color(choiceOne.GetComponent<SpriteRenderer>().color.r, choiceOne.GetComponent<SpriteRenderer>().color.g, choiceOne.GetComponent<SpriteRenderer>().color.b, 0);
+            choiceTwo.GetComponent<SpriteRenderer>().color = new Color(choiceTwo.GetComponent<SpriteRenderer>().color.r, choiceTwo.GetComponent<SpriteRenderer>().color.g, choiceTwo.GetComponent<SpriteRenderer>().color.b, 0);
+            choiceUI.GetComponent<SpriteRenderer>().color = new Color(choiceUI.GetComponent<SpriteRenderer>().color.r, choiceUI.GetComponent<SpriteRenderer>().color.g, choiceUI.GetComponent<SpriteRenderer>().color.b, 0);
             StartCoroutine(TransitionScene());
         }
     }

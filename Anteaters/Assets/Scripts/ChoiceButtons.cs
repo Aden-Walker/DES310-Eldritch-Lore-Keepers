@@ -27,13 +27,13 @@ public class ChoiceButtons : MonoBehaviour
     private void OnMouseOver()
     {
         renderer.material.color = mouseOverColour;
-        Debug.Log("Mouse over button" + buttonId);
+     
     }
 
     private void OnMouseExit()
     {
         renderer.material.color = originalColour;
-        Debug.Log("Mouse exited button" + buttonId);
+       
     }
 
     private void OnMouseDown()
