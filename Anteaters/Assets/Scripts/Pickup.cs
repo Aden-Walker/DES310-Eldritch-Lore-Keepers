@@ -12,6 +12,7 @@ public class Pickup : MonoBehaviour
     {
         if (animator.GetBool("BranchFallen"))
         {
+            Debug.Log("Branch picked up");
             inventory.setBranch(true);
         }
     }

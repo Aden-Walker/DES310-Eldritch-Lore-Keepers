@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         //load next sentence in queue
         currentText = _sentences.Dequeue();
 
-        Debug.Log(currentText);
+        
 
         //type sentence with typewriter effect
         StopAllCoroutines();
@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Stopping coroutine and displaying full text");
+            
             StopAllCoroutines();
             dialogueText.text = currentText;
         }
@@ -89,18 +89,17 @@ public class DialogueManager : MonoBehaviour
         // set initial text to be blank
         dialogueText.text = "";
         
-        Debug.Log("coroutine sentence: " + sentence);
+       
 
         // start a loop that runs frame independent
         foreach (char letter in sentence.ToCharArray())
         {
             //add next letter to text box text
             dialogueText.text += letter;
-            Debug.Log(dialogueText.text);
 
             //wait for time delay before doing next iteration
             yield return new WaitForSeconds(timeDelay);
-            Debug.Log("sasdfahasdiofuhsdaf");
+           
         }
 
         yield break;
