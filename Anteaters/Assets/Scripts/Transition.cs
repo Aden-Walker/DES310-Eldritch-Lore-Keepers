@@ -12,7 +12,9 @@ public class Transition : MonoBehaviour
     public GameObject background;
     public GameObject choiceOne;
     public GameObject choiceTwo;
+    public GameObject choiceUI;
     private bool transitioned = false;
+    private bool buttonsFaded = false;
     private int sceneToGoTo;
 
 
@@ -77,17 +79,19 @@ public class Transition : MonoBehaviour
         //    yield return null;
         //}
 
-        choiceOne.SetActive(true);
-        choiceTwo.SetActive(true);
+        buttonsFaded = true;
 
-        yield return new WaitForEndOfFrame();
+        yield break;
     }
 
     // function to be called by the transition arrow object
     public void handleTransition(int scene)
     {
         sceneToGoTo = scene;
-        StartCoroutine(TransitionScene());
+        if (buttonsFaded)
+        {
+            StartCoroutine(TransitionScene());
+        }
     }
 
     //coroutine to fade to black lower speed = slower transition time
