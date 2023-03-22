@@ -30,7 +30,7 @@ public class MouseClicking : MonoBehaviour
     void Update()
     {
         //check if the mouse has been clicked and that the player is not currently moving
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !animator.GetBool("WithChild"))
         {
             //set the start time to when the time when the mouse was clicked
             startTime = Time.time;
