@@ -33,8 +33,8 @@ public class CameraTracking : MonoBehaviour
         switch(currentScene)
         {
             case 1:
-                if (modTracked.x > 17.72)
-                    modTracked.x = 17.72f;
+                if (modTracked.x > 35.9)
+                    modTracked.x = 35.9f;
                break;
             case 2:
                 if (modTracked.x > 17.73)

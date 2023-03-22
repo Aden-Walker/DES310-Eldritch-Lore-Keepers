@@ -23,9 +23,9 @@ public class MouseClicking : MonoBehaviour
         //gets the animator component
         animator = GetComponent<Animator>(); 
         positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z); //Initialize our two movement points to be the starting position to prevent null values.
-        transform.position = new Vector3(-4.25f, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         speed = 2.0f;
-
+        StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
     }
     void Update()
     {
@@ -134,6 +134,23 @@ public class MouseClicking : MonoBehaviour
         theScale.x *= -1; //By turning the scale from negative to positive or positive to negative we change what way the anteater is facing.
         transform.localScale = theScale; //We set the scale to be the newly calculated scale.
 
+    }
+
+
+    public IEnumerator EnterScene(Vector3 startPosition, Vector3 endPosition,float entrySpeed = 1.0f, float fractionOfJourney = 0.0f)
+    {
+        while(fractionOfJourney < 1)
+        {
+            fractionOfJourney += Time.deltaTime / entrySpeed;
+
+            transform.position = Vector3.Lerp(startPosition, endPosition, fractionOfJourney);
+
+            yield return null;
+        }
+
+        animator.SetBool("WithChild", false);
+
+        yield break;
     }
 
 }

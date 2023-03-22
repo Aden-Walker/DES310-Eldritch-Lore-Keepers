@@ -14,8 +14,14 @@ public class Transition : MonoBehaviour
     public GameObject choiceTwo;
     private bool transitioned = false;
     private int sceneToGoTo;
-    
-    
+
+
+    void Start()
+    {
+        
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -59,6 +65,7 @@ public class Transition : MonoBehaviour
         }
 
 
+        // commented out code for having the buttons slide in instead of fading in
 
         //while (fractionOfJourney < 1)
         //{
@@ -70,6 +77,8 @@ public class Transition : MonoBehaviour
         //    yield return null;
         //}
 
+        choiceOne.SetActive(true);
+        choiceTwo.SetActive(true);
 
         yield return new WaitForEndOfFrame();
     }

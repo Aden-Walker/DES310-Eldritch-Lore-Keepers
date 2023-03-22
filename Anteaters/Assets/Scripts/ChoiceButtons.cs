@@ -8,7 +8,7 @@ public class ChoiceButtons : MonoBehaviour
     public int buttonId;
     public GameObject transitionArrow;
 
-    Color mouseOverColour = Color.red;
+    Color mouseOverColour = Color.green;
     Color originalColour;
 
     SpriteRenderer renderer;
@@ -18,7 +18,9 @@ public class ChoiceButtons : MonoBehaviour
     {
         renderer = GetComponent<SpriteRenderer>();
 
-        originalColour = renderer.material.color;
+        originalColour = Color.grey;
+
+        renderer.material.color = originalColour;
     }
 
 
