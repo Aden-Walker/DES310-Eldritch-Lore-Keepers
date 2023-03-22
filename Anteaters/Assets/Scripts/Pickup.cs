@@ -8,11 +8,11 @@ public class Pickup : MonoBehaviour
     public Inventory inventory;
 
 
-    void pickup()
+    public void pickup()
     {
         if (animator.GetBool("BranchFallen"))
         {
-            inventory.Branch = true;
+            inventory.setBranch(true);
         }
     }
 }

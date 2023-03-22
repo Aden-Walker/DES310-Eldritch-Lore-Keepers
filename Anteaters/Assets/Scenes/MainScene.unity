@@ -1230,6 +1230,7 @@ GameObject:
   - component: {fileID: 291914475}
   - component: {fileID: 291914476}
   - component: {fileID: 291914477}
+  - component: {fileID: 291914478}
   m_Layer: 2
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -1383,6 +1384,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &291914478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291914471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c450ed623f30c7848b509d0eca723709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Branch: 0
 --- !u!1 &344007968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,6 +2558,8 @@ GameObject:
   - component: {fileID: 1272774105}
   - component: {fileID: 1272774107}
   - component: {fileID: 1272774106}
+  - component: {fileID: 1272774109}
+  - component: {fileID: 1272774108}
   m_Layer: 0
   m_Name: TreeBranch
   m_TagString: Untagged
@@ -2638,6 +2654,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1272774108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272774104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fedac88e33278c44a2d6c34e7bfd303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1272774106}
+  inventory: {fileID: 291914478}
+--- !u!114 &1272774109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272774104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1272774108}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1348377600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,6 +2744,7 @@ MonoBehaviour:
   nameText: {fileID: 1617432080}
   dialogueText: {fileID: 159596219}
   animator: {fileID: 4203081}
+  pickup: {fileID: 0}
   timeDelay: 0.01
 --- !u!1 &1424024469
 GameObject:
