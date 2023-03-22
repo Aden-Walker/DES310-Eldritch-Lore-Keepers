@@ -7,10 +7,13 @@ public class DialogueManager : MonoBehaviour
     //Create variable to hold text box strings
     private Queue<string> _sentences;
     
+    
     //public editor variables and links to ui
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
+
+    public Pickup pickup;
     public float timeDelay;
 
     private string currentText = "";
@@ -61,6 +64,10 @@ public class DialogueManager : MonoBehaviour
             //check if there is a sentence to display
             if (_sentences.Count == 0)
             {
+                if (nameText.text == "Tree")
+                {
+                    pickup.animator.SetBool("BranchFallen", true);
+                }
                 //close text box
                 EndDialogue();
             }
