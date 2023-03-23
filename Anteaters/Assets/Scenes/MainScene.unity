@@ -546,14 +546,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52168422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-
-  m_LocalPosition: {x: 9.8537, y: -2.6083, z: -0}
-  m_LocalScale: {x: 37.34826, y: 2.9695697, z: 1}
-
+  m_LocalPosition: {x: 8.0779, y: -2.8804, z: 0}
+  m_LocalScale: {x: 33.32451, y: 2.4169984, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &68740377
 GameObject:
@@ -634,7 +632,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1930164011
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &68740381
 RectTransform:
@@ -655,7 +653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 8.9, y: 0}
+  m_AnchoredPosition: {x: 8.89, y: -0.13}
   m_SizeDelta: {x: 3840.1943, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &101467495
@@ -1826,10 +1824,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-
-  m_AnchoredPosition: {x: 657, y: -158}
-  m_SizeDelta: {x: 191.58, y: 163.18}
-
+  m_AnchoredPosition: {x: 625, y: -146}
+  m_SizeDelta: {x: 185.23, y: 156.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596247730
 MonoBehaviour:
@@ -1887,20 +1883,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-
 --- !u!114 &596247731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1914,7 +1896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.73333335}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1956,9 +1938,7 @@ MonoBehaviour:
     - This tree is dry and cracked, the bark is flaking away.
     - "It looks like there may have been termites here once but there aren\u2019t
       any now."
-
     - Oh, a branch fell down.
-
     name: Tree
 --- !u!1 &732170714
 GameObject:
@@ -2669,7 +2649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272774104}
   m_LocalRotation: {x: 0.00014555376, y: -0.00021748334, z: -0.5561924, w: 0.83105356}
-  m_LocalPosition: {x: 1012, y: -174, z: -9720}
+  m_LocalPosition: {x: 758, y: -166, z: -9720}
   m_LocalScale: {x: 23.503508, y: 27.523924, z: 108}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2810,9 +2790,8 @@ MonoBehaviour:
   nameText: {fileID: 1617432080}
   dialogueText: {fileID: 159596219}
   animator: {fileID: 4203081}
-
   pickup: {fileID: 1272774108}
-  timeDelay: 0.02
+  timeDelay: 0.01
 --- !u!1 &1382449328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,8 +2949,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382449328}
   m_CullTransparentMesh: 1
-
-
 --- !u!1 &1453548269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3195,7 +3172,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1930164011
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1616162721
 RectTransform:
@@ -3908,7 +3885,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.812}
 --- !u!1 &1939781283
 GameObject:

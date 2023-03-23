@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
@@ -62,19 +63,15 @@ public class DialogueManager : MonoBehaviour
             //check if there is a sentence to display
             if (_sentences.Count == 0)
             {
+               
                 //close text box
                 EndDialogue();
             }
             else
             {
-                //check if the last text is being displayed
-                if (_sentences.Count == 1)
+                if (_sentences.Count == 1 && nameText.text == "Tree")
                 {
-                    //bespoke code for the tree interaction
-                    if (nameText.text == "Tree")
-                    {
-                        pickup.animator.SetBool("BranchFallen", true);
-                    }
+                    pickup.animator.SetBool("BranchFallen", true);
                 }
                 LoadNext();
             }
