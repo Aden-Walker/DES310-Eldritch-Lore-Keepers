@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private bool Branch = false;
+    private bool _branch = false;
 
-    public void setBranch(bool set)
+    public void SetBranch(bool set)
     {
-        Branch = set;
+        if (set == true)
+        {
+            Debug.Log("Branch picked up");
+        }
+        _branch = set;
     }
 
-    public bool getBranch()
+    public bool GetBranch()
     {
-        return Branch;
+        return _branch;
     }
     
     
