@@ -7,10 +7,13 @@ public class DialogueManager : MonoBehaviour
     //Create variable to hold text box strings
     private Queue<string> _sentences;
     
+    
     //public editor variables and links to ui
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Animator animator;
+
+    public Pickup pickup;
     public float timeDelay;
 
     private string currentText = "";
@@ -41,15 +44,13 @@ public class DialogueManager : MonoBehaviour
         LoadNext();
     }
 
-    public void LoadNext()
+    private void LoadNext()
     {
         //load next sentence in queue
         currentText = _sentences.Dequeue();
-
-        Debug.Log(currentText);
-
+        
         //type sentence with typewriter effect
-        StopAllCoroutines();
+        StopAllCoroutines();            //Maybe redundant
         StartCoroutine(TypeSentence(currentText));
     }
 
@@ -66,12 +67,21 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
+                //check if the last text is being displayed
+                if (_sentences.Count == 1)
+                {
+                    //bespoke code for the tree interaction
+                    if (nameText.text == "Tree")
+                    {
+                        pickup.animator.SetBool("BranchFallen", true);
+                    }
+                }
                 LoadNext();
             }
         }
         else
         {
-            Debug.Log("Stopping coroutine and displaying full text");
+            //stop typewriter effect and set text to be full
             StopAllCoroutines();
             dialogueText.text = currentText;
         }
@@ -82,18 +92,17 @@ public class DialogueManager : MonoBehaviour
         // set initial text to be blank
         dialogueText.text = "";
         
-        Debug.Log("coroutine sentence: " + sentence);
+       
 
         // start a loop that runs frame independent
         foreach (char letter in sentence.ToCharArray())
         {
             //add next letter to text box text
             dialogueText.text += letter;
-            Debug.Log(dialogueText.text);
 
             //wait for time delay before doing next iteration
             yield return new WaitForSeconds(timeDelay);
-            Debug.Log("sasdfahasdiofuhsdaf");
+           
         }
 
         yield break;
