@@ -5,14 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Anteaters/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Anteaters/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DialogueManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pickup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pickup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/dream-of-me.regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/dream-of-me.regular SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Sprites/TreeBranch.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Sprites/TreeBranch.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Sprites/TreeBranchFall.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Sprites/TreeBranchFall.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Sprites/TreeBranchOnTree.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Sprites/TreeBranchOnTree.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TreeBranch.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TreeBranch.controller" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +103,7 @@
       <workItem from="1679415043514" duration="2028000" />
       <workItem from="1679497552483" duration="611000" />
       <workItem from="1679498706540" duration="1125000" />
+      <workItem from="1679575609953" duration="710000" />
     </task>
     <servers />
   </component>

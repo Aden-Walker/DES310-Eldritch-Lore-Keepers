@@ -44,15 +44,13 @@ public class DialogueManager : MonoBehaviour
         LoadNext();
     }
 
-    public void LoadNext()
+    private void LoadNext()
     {
         //load next sentence in queue
         currentText = _sentences.Dequeue();
-
         
-
         //type sentence with typewriter effect
-        StopAllCoroutines();
+        StopAllCoroutines();            //Maybe redundant
         StartCoroutine(TypeSentence(currentText));
     }
 
@@ -64,21 +62,26 @@ public class DialogueManager : MonoBehaviour
             //check if there is a sentence to display
             if (_sentences.Count == 0)
             {
-                if (nameText.text == "Tree")
-                {
-                    pickup.animator.SetBool("BranchFallen", true);
-                }
                 //close text box
                 EndDialogue();
             }
             else
             {
+                //check if the last text is being displayed
+                if (_sentences.Count == 1)
+                {
+                    //bespoke code for the tree interaction
+                    if (nameText.text == "Tree")
+                    {
+                        pickup.animator.SetBool("BranchFallen", true);
+                    }
+                }
                 LoadNext();
             }
         }
         else
         {
-            
+            //stop typewriter effect and set text to be full
             StopAllCoroutines();
             dialogueText.text = currentText;
         }
