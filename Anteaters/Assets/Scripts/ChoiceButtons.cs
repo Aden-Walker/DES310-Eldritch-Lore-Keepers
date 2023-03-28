@@ -26,18 +26,21 @@ public class ChoiceButtons : MonoBehaviour
 
     private void OnMouseOver()
     {
+        //changes colour when the button is hovered over
         renderer.material.color = mouseOverColour;
      
     }
 
     private void OnMouseExit()
     {
+        //resets colour when the button is no longer hovered over
         renderer.material.color = originalColour;
        
     }
 
     private void OnMouseDown()
     {
+        // switch statement using the button id assigned in editor. Very dirty as it relies on every scene button having a different id
         switch (buttonId)
         {
             case 0:

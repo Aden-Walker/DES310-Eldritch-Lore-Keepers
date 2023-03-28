@@ -38,13 +38,17 @@ public class Transition : MonoBehaviour
     //called when the object the script is attached to is collided with
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //ensures there's not a transition called when it shouldn't be
         if (collision.name != "Path")
         {
+
+            //these variables are only used when the choices are being moved into the scene rather than fading, can probably be removed
             Vector3 buttonOneStartPos = choiceOne.transform.position;
             Vector3 buttonTwoStartPos = choiceTwo.transform.position;
             Vector3 buttonOneEndPos = new Vector3(buttonOneStartPos.x, 0, buttonOneStartPos.z);
             Vector3 buttonTwoEndPos = new Vector3(buttonTwoStartPos.x, 0, buttonOneEndPos.z);
 
+            //start the coroutine to fade the choice buttons in
             StartCoroutine(ActivateChoices(buttonOneStartPos, buttonOneEndPos, buttonTwoStartPos, buttonTwoEndPos));
             Debug.Log("Trigger Called");
         }
