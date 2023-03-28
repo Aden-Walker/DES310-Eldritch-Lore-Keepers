@@ -24,7 +24,7 @@ public class MouseClicking : MonoBehaviour
         animator = GetComponent<Animator>(); 
         positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z); //Initialize our two movement points to be the starting position to prevent null values.
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        speed = 2.0f;
+        speed = 3.0f;
         StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
     }
     void Update()
