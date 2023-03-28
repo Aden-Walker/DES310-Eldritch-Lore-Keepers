@@ -69,10 +69,15 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
+                //check if the last text box of the tree text box is displayed
                 if (_sentences.Count == 1 && nameText.text == "Tree")
                 {
                     pickup.animator.SetBool("BranchFallen", true);
                 }
+
+
+
+                // load next sentence
                 LoadNext();
             }
         }
