@@ -26,7 +26,7 @@ public class MouseClicking : MonoBehaviour
         animator.SetInteger("SceneNumber", currentScene);
         positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z); //Initialize our two movement points to be the starting position to prevent null values.
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        speed = 3.0f;
+        speed = 2.5f;
         StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
     }
     void Update()
