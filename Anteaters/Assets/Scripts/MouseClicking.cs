@@ -158,4 +158,9 @@ public class MouseClicking : MonoBehaviour
         animator.SetBool("WithChild", wC);
     }
 
+    public Vector3 getAimPos()
+    {
+        return positionToMoveTo;
+    }
+
 }
