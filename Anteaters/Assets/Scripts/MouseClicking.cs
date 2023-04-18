@@ -23,7 +23,6 @@ public class MouseClicking : MonoBehaviour
         //gets the animator component
         animator = GetComponent<Animator>(); 
         positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z); //Initialize our two movement points to be the starting position to prevent null values.
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         speed = 2.0f;
         StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
     }
@@ -151,6 +150,17 @@ public class MouseClicking : MonoBehaviour
         animator.SetBool("WithChild", false);
 
         yield break;
+    }
+
+
+    public void setWithChild(bool wC)
+    {
+        animator.SetBool("WithChild", wC);
+    }
+
+    public Vector3 getAimPos()
+    {
+        return positionToMoveTo;
     }
 
 }
