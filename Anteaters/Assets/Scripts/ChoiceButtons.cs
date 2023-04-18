@@ -47,7 +47,7 @@ public class ChoiceButtons : MonoBehaviour
                 transitionArrow.GetComponent<Transition>().handleTransition(2);
                 break;
             case 1:
-                transitionArrow.GetComponent<Transition>().handleTransition(2);
+                transitionArrow.GetComponent<Transition>().handleTransition(3);
                 break;
         }
     }

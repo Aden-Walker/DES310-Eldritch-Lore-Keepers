@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TheNextScene.unity
     guid: f3e57734e9524004b9b93566836fa298
+  - enabled: 1
+    path: Assets/Scenes/SeperatedScene.unity
+    guid: d8c89ef95f5175f43a6e53aa631c739b
   m_configObjects: {}
