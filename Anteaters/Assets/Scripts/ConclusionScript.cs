@@ -29,12 +29,12 @@ public class ConclusionScript : MonoBehaviour
             triggered = true;
             Debug.Log("Trigger Called, Child Start: " + childStartPosition + " Child End: " + childFinalPosition);
             child.GetComponent<Animator>().SetBool("IsMoving", true);
-            StartCoroutine(EndingMovement(childStartPosition, childFinalPosition, 0.1f));
+            StartCoroutine(EndingMovement(childStartPosition, childFinalPosition));
         }
             
     }
 
-    public IEnumerator EndingMovement(Vector3 startPosition, Vector3 endPosition, float speed = 1.0f, float fractionOfJourney = 0.0f)
+    public IEnumerator EndingMovement(Vector3 startPosition, Vector3 endPosition, float speed = 0.1f, float fractionOfJourney = 0.0f)
     {
         //simple lerp coroutine for the child moving down to the mother anteater
 

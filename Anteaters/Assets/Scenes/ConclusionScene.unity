@@ -654,6 +654,7 @@ MonoBehaviour:
   trackedObject: {fileID: 1277785097}
   updateSpeed: 10
   trackingOffset: {x: 0, y: 0}
+  cameraEdgeX: 37
 --- !u!1 &1007041415
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +813,7 @@ MonoBehaviour:
   trackedObject: {fileID: 1714013876}
   updateSpeed: 7
   trackingOffset: {x: 0, y: 0}
+  cameraEdgeX: 37
 --- !u!1 &1445975146
 GameObject:
   m_ObjectHideFlags: 0
