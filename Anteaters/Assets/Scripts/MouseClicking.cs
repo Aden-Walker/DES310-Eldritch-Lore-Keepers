@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class MouseClicking : MonoBehaviour
 {
     //more or less the player class
@@ -21,12 +21,9 @@ public class MouseClicking : MonoBehaviour
     {
         //We are initializing all of our variables here.
         //gets the animator component
-        animator = GetComponent<Animator>();
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        animator.SetInteger("SceneNumber", currentScene);
+        animator = GetComponent<Animator>(); 
         positionToMoveTo = new Vector3(-4.25f, transform.position.y, transform.position.z); //Initialize our two movement points to be the starting position to prevent null values.
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        speed = 2.5f;
+        speed = 2.0f;
         StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
     }
     void Update()
@@ -81,22 +78,6 @@ public class MouseClicking : MonoBehaviour
             LayerMask mask = LayerMask.GetMask("Default");
 
             RaycastHit2D hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.up, Mathf.Infinity, mask); //A raycast for detection
-
-            if ((hit.collider != null) && (hit.collider.name == "Path"))
-            {
-
-                if (hit.distance > 0.0f)
-                {
-
-                    fractionOfJourney = prevfoJ;
-                    moving = false;
-
-                }
-
-
-            }
-
-            hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.down, Mathf.Infinity, mask); //A raycast for detection
 
             if ((hit.collider != null) && (hit.collider.name == "Path"))
             {
@@ -169,6 +150,17 @@ public class MouseClicking : MonoBehaviour
         animator.SetBool("WithChild", false);
 
         yield break;
+    }
+
+
+    public void setWithChild(bool wC)
+    {
+        animator.SetBool("WithChild", wC);
+    }
+
+    public Vector3 getAimPos()
+    {
+        return positionToMoveTo;
     }
 
 }
