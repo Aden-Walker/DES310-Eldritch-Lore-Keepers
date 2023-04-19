@@ -648,6 +648,7 @@ MonoBehaviour:
   trackedObject: {fileID: 940570211}
   updateSpeed: 10
   trackingOffset: {x: 0, y: 0}
+  cameraEdgeX: 30
 --- !u!114 &288552627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,7 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37f62be5fb7753439fcece310708662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonId: 0
+  buttonId: 2
   transitionArrow: {fileID: 798151796}
 --- !u!212 &418622206
 SpriteRenderer:
@@ -1070,8 +1071,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418622203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.37, y: 0.75, z: 0}
-  m_LocalScale: {x: 1.2137597, y: 0.97741187, z: 0.38050812}
+  m_LocalPosition: {x: 28.69, y: 0, z: 0}
+  m_LocalScale: {x: 1.2137597, y: 1, z: 0.38050812}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1569,7 +1570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798151796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.43, y: 0.02, z: 0}
+  m_LocalPosition: {x: 38.87, y: 0.15, z: 0}
   m_LocalScale: {x: 0.8213156, y: 0.92859787, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1774,6 +1775,7 @@ MonoBehaviour:
   trackedObject: {fileID: 1854446385}
   updateSpeed: 7
   trackingOffset: {x: 0, y: 0}
+  cameraEdgeX: 30
 --- !u!4 &940570211
 Transform:
   m_ObjectHideFlags: 0
@@ -2095,6 +2097,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1004266338}
+        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
+        m_MethodName: SendMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameClosed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1004266340
@@ -2766,7 +2780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37f62be5fb7753439fcece310708662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonId: 1
+  buttonId: 3
   transitionArrow: {fileID: 798151796}
 --- !u!212 &1320379507
 SpriteRenderer:
@@ -2828,8 +2842,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320379504}
   m_LocalRotation: {x: -0, y: -0, z: 0.0038602212, w: 0.99999255}
-  m_LocalPosition: {x: 40.09, y: 0.81, z: 0}
-  m_LocalScale: {x: 1.21376, y: 1.053421, z: 0.3671673}
+  m_LocalPosition: {x: 34.93, y: 0, z: 0}
+  m_LocalScale: {x: 1.21376, y: 1, z: 0.3671673}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
