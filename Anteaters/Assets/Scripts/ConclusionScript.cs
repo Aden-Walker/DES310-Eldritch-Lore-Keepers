@@ -34,7 +34,7 @@ public class ConclusionScript : MonoBehaviour
             
     }
 
-    public IEnumerator EndingMovement(Vector3 startPosition, Vector3 endPosition, float speed = 0.1f, float fractionOfJourney = 0.0f)
+    public IEnumerator EndingMovement(Vector3 startPosition, Vector3 endPosition, float speed = 2.0f, float fractionOfJourney = 0.0f)
     {
         //simple lerp coroutine for the child moving down to the mother anteater
 

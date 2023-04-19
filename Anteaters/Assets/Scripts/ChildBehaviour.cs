@@ -18,14 +18,13 @@ public class ChildBehaviour : MonoBehaviour
     private Vector3 childStartPosition;
     private Color childColor;
     private bool active = false;
-    
+    private bool lerpCompleted = false;
     // Start is called before the first frame update
     void Start()
     {
-        childStartPosition = player.transform.position;
         
         childColor = GetComponent<SpriteRenderer>().color;
-        movementNumber = 1;
+        movementNumber = 0;
         GetComponent<SpriteRenderer>().color = new Color(childColor.r, childColor.g, childColor.b, 0);
     }
 
@@ -35,6 +34,7 @@ public class ChildBehaviour : MonoBehaviour
         if(!player.GetComponent<Animator>().GetBool("WithChild") && !active)
         {
             active = true;
+            childStartPosition = player.transform.position;
             GetComponent<SpriteRenderer>().color = childColor;
         }
         if(active)
@@ -43,30 +43,56 @@ public class ChildBehaviour : MonoBehaviour
             {
                 switch (movementNumber)
                 {
+                    case 0:
+                        GetComponent<Animator>().SetBool("IsMoving", false);
+                        break;
                     case 1:
-                        GetComponent<Animator>().SetBool("IsMoving", true);
-                        StartCoroutine(LerpMovement(childStartPosition, firstEndPos.position));
+                        if (!lerpCompleted)
+                        {
+                            GetComponent<Animator>().SetBool("IsMoving", true);
+                            StartCoroutine(LerpMovement(childStartPosition, firstEndPos.position));
+                        }
                         break;
                     case 2:
-                        GetComponent<Animator>().SetBool("IsMoving", true);
-                        StartCoroutine(LerpMovement(firstEndPos.position, secondEndPos.position));
+                        if (!lerpCompleted)
+                        {
+                            GetComponent<Animator>().SetBool("IsMoving", true);
+                            StartCoroutine(LerpMovement(firstEndPos.position, secondEndPos.position));
+                        }
                         break;
                     case 3:
-                        GetComponent<Animator>().SetBool("IsMoving", true);
-                        StartCoroutine(LerpMovement(secondEndPos.position, thirdEndPos.position));
+                        if (!lerpCompleted)
+                        {
+                            GetComponent<Animator>().SetBool("IsMoving", true);
+                            StartCoroutine(LerpMovement(secondEndPos.position, thirdEndPos.position));
+                        }
                         break;
                     case 4:
-                        GetComponent<Animator>().SetBool("IsMoving", true);
-                        StartCoroutine(LerpMovement(thirdEndPos.position, fourthEndPos.position));
+                        if (!lerpCompleted)
+                        {
+                            GetComponent<Animator>().SetBool("IsMoving", true);
+                            StartCoroutine(LerpMovement(thirdEndPos.position, fourthEndPos.position));
+                        }
                         break;
                     case 5:
+                        if (!lerpCompleted)
+                        {
+                            GetComponent<Animator>().SetBool("IsMoving", true);
+                            StartCoroutine(LerpMovement(fourthEndPos.position, finalEndPos.position));
+                        }
+                        break;
+                    default:
+
+                        break;
 
                 }
             }
         }
+
+       
     }
 
-    public IEnumerator LerpMovement(Vector3 start, Vector3 end, float fractionOfJourney = 0.0f, float speed = 0.5f)
+    public IEnumerator LerpMovement(Vector3 start, Vector3 end, float fractionOfJourney = 0.0f, float speed = 1.0f)
     {
         while(fractionOfJourney < 1)
         {
@@ -80,12 +106,14 @@ public class ChildBehaviour : MonoBehaviour
 
         GetComponent<Animator>().SetBool("IsMoving", false);
 
+        lerpCompleted = true;
         yield break;
     }
 
 
     public void IncrementMovement()
     {
+        lerpCompleted = false;
         movementNumber++;
     }
 }
