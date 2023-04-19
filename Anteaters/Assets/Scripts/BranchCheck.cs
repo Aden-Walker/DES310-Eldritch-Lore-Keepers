@@ -8,6 +8,7 @@ public class BranchCheck : MonoBehaviour
     public GameObject branch;
     private void OnTriggerEnter2D(Collider2D col)
     {
+        //change path layer to active and display branch
         if (col.name == "Player" && inventory.GetBranch())
         {
             path.layer = 0;
