@@ -27,8 +27,10 @@ public class MouseClicking : MonoBehaviour
         speed = 2.0f;
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         animator.SetInteger("SceneNumber", currentScene);
-        if(currentScene == 1)
+        if (currentScene == 1)
             StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
+        else
+            animator.SetBool("WithChild", false);
     }
     void Update()
     {
