@@ -23,7 +23,7 @@ public class ChildBehaviour : MonoBehaviour
     void Start()
     {
         
-        childColor = GetComponent<SpriteRenderer>().color;
+        childColor = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, 1);
         movementNumber = 0;
         GetComponent<SpriteRenderer>().color = new Color(childColor.r, childColor.g, childColor.b, 0);
     }
@@ -31,7 +31,7 @@ public class ChildBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!player.GetComponent<Animator>().GetBool("WithChild") && !active)
+        if(player.GetComponent<MouseClicking>().getDismount() && !active)
         {
             active = true;
             childStartPosition = player.transform.position;

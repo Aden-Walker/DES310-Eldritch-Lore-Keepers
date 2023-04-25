@@ -14,6 +14,7 @@ public class MouseClicking : MonoBehaviour
     float speed, startTime, journeyLength; //A bunch of movement variables, moveX is how far we move in the horizontal direction, speed is how fast we go and the Conversion variables determine the rate at which speeds are divided.
     bool facingRight = true; //A variable to check if the anteater is facing right or not. Used for Flipping.
     bool moving = false;
+    bool dismountFinished = false;
     float distCovered = 0.0f;
     float fractionOfJourney = 0.0f;
     Vector3 startPos;
@@ -27,123 +28,136 @@ public class MouseClicking : MonoBehaviour
         speed = 2.0f;
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         animator.SetInteger("SceneNumber", currentScene);
+
         if (currentScene == 1)
+        {
+            
             StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
+        }
         else
+        {
             animator.SetBool("WithChild", false);
+            dismountFinished = true;
+        }
     }
     void Update()
     {
-        //check if the mouse has been clicked and that the player is not currently moving
-        if (Input.GetMouseButtonDown(0) && !animator.GetBool("WithChild"))
+        if (!dismountFinished)
         {
-            //set the start time to when the time when the mouse was clicked
-            startTime = Time.time;
-            float distanceToScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z; //How far away is the objects from the screen.
-            Vector3 curPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen)); //The position we are at currently with our mouse
-            positionToMoveTo = new Vector3(curPosition.x, curPosition.y, transform.position.z); //Where are we going? Where are we off to?
-
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen)), -Vector2.up); //A raycast for detection
-            Ray2D ray = new Ray2D(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen)), new Vector2(0,-1)); //A ray itself seeing where the mouse is.
-
-            if ((hit.collider != null) && (hit.collider.name == "Path"))
-            {
-
-                positionToMoveTo = new Vector3(hit.point.x, hit.point.y, transform.position.z);
-
-            }
-
-            //zero the distance covered and fraction of the journey
-            distCovered = 0.0f;
-            fractionOfJourney = 0.0f;
-            journeyLength = Vector3.Distance(transform.position, positionToMoveTo);
-            startPos = transform.position;
-            moving = true;
-           
+            dismountFinished = animator.GetCurrentAnimatorStateInfo(0).IsName("ChildDismounted");
         }
-
-        //check if the journey is over
-        if (fractionOfJourney >= 0.99f)
+        else
         {
-            //stop the movement animation
-            moving = false;
+            //check if the mouse has been clicked and that the player is not currently moving
+            if (Input.GetMouseButtonDown(0))
+            {
+                //set the start time to when the time when the mouse was clicked
+                startTime = Time.time;
+                float distanceToScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z; //How far away is the objects from the screen.
+                Vector3 curPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen)); //The position we are at currently with our mouse
+                positionToMoveTo = new Vector3(curPosition.x, curPosition.y, transform.position.z); //Where are we going? Where are we off to?
+
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen)), -Vector2.up); //A raycast for detection
+                Ray2D ray = new Ray2D(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen)), new Vector2(0, -1)); //A ray itself seeing where the mouse is.
+
+                if ((hit.collider != null) && (hit.collider.name == "Path"))
+                {
+
+                    positionToMoveTo = new Vector3(hit.point.x, hit.point.y, transform.position.z);
+
+                }
+
+                //zero the distance covered and fraction of the journey
+                distCovered = 0.0f;
+                fractionOfJourney = 0.0f;
+                journeyLength = Vector3.Distance(transform.position, positionToMoveTo);
+                startPos = transform.position;
+                moving = true;
+
+            }
+
+            //check if the journey is over
+            if (fractionOfJourney >= 0.99f)
+            {
+                //stop the movement animation
+                moving = false;
+            }
+
+            //if the player is still moving
+            if (moving == true)
+            {
+                //set the current distance covered to the difference between the current time and the start time
+                distCovered = (Time.time - startTime) * speed;
+
+                float prevfoJ = fractionOfJourney;
+
+                //set the fraction of the journey covered
+                fractionOfJourney = distCovered / journeyLength;
+
+
+                LayerMask mask = LayerMask.GetMask("Default");
+
+                RaycastHit2D hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.up, Mathf.Infinity, mask); //A raycast for detection
+
+                if ((hit.collider != null) && (hit.collider.name == "Path"))
+                {
+
+                    if (hit.distance > 0.0f)
+                    {
+
+                        fractionOfJourney = prevfoJ;
+                        moving = false;
+
+                    }
+
+
+                }
+
+                hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.down, Mathf.Infinity, mask); //A raycast for detection
+
+                if ((hit.collider != null) && (hit.collider.name == "Path"))
+                {
+
+                    if (hit.distance > 0.0f)
+                    {
+
+                        fractionOfJourney = prevfoJ;
+                        moving = false;
+
+                    }
+
+                }
+
+                //lerp the player's positiong using the start position, the position to move to and the current fraction of the journey
+                transform.position = Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney);
+
+                if (positionToMoveTo.x - transform.position.x > 0.0f) //Now we try to see if we are moving in the right direction.
+                {
+                    if (!facingRight) //This checks if we are facing left, if we are we will flip.
+                    {
+
+                        Flip();
+                        facingRight = true;
+
+                    }
+                }
+                else if (positionToMoveTo.x - transform.position.x < 0.0f) //Or are we instead moving to the left?
+                {
+                    if (facingRight) //This checks if we are facing right, if we are we will flip.
+                    {
+
+                        Flip();
+                        facingRight = false;
+
+                    }
+                }
+
+
+            }
+
+            //passes the animator parameter 
+            animator.SetBool("IsMoving", moving);
         }
-
-        //if the player is still moving
-        if (moving == true)
-        {
-            //set the current distance covered to the difference between the current time and the start time
-            distCovered = (Time.time - startTime) * speed;
-            
-            float prevfoJ = fractionOfJourney;
-
-            //set the fraction of the journey covered
-            fractionOfJourney = distCovered / journeyLength;
-
-
-            LayerMask mask = LayerMask.GetMask("Default");
-
-            RaycastHit2D hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.up, Mathf.Infinity, mask); //A raycast for detection
-
-            if ((hit.collider != null) && (hit.collider.name == "Path"))
-            {
-
-                if (hit.distance > 0.0f)
-                {
-
-                    fractionOfJourney = prevfoJ;
-                    moving = false;
-
-                }
-
-
-            }
-
-            hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.down, Mathf.Infinity, mask); //A raycast for detection
-
-            if ((hit.collider != null) && (hit.collider.name == "Path"))
-            {
-
-                if (hit.distance > 0.0f)
-                {
-
-                    fractionOfJourney = prevfoJ;
-                    moving = false;
-
-                }
-
-            }
-
-            //lerp the player's positiong using the start position, the position to move to and the current fraction of the journey
-            transform.position = Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney);
-
-            if (positionToMoveTo.x - transform.position.x > 0.0f) //Now we try to see if we are moving in the right direction.
-            {
-                if (!facingRight) //This checks if we are facing left, if we are we will flip.
-                {
-
-                    Flip();
-                    facingRight = true;
-
-                }
-            }
-            else if (positionToMoveTo.x - transform.position.x < 0.0f) //Or are we instead moving to the left?
-            {
-                if (facingRight) //This checks if we are facing right, if we are we will flip.
-                {
-
-                    Flip();
-                    facingRight = false;
-
-                }
-            }
-
-
-        }
-
-        //passes the animator parameter 
-        animator.SetBool("IsMoving", moving); 
-
     }
 
     void Flip() //Flipping code to flip sprites
@@ -182,6 +196,11 @@ public class MouseClicking : MonoBehaviour
     public Vector3 getAimPos()
     {
         return positionToMoveTo;
+    }
+
+    public bool getDismount()
+    {
+        return dismountFinished;
     }
 
 }
