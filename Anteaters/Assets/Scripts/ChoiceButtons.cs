@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChoiceButtons : MonoBehaviour
@@ -49,6 +50,19 @@ public class ChoiceButtons : MonoBehaviour
             case 1:
                 transitionArrow.GetComponent<Transition>().handleTransition(2);
                 break;
+            case 2:
+                transitionArrow.GetComponent<Transition>().handleTransition(4);
+                break;
+            case 3:
+                transitionArrow.GetComponent<Transition>().handleTransition(4);
+                break;
+            case 4:
+                transitionArrow.GetComponent<Transition>().handleTransition(5);
+                break;
+            case 5:
+                transitionArrow.GetComponent<Transition>().handleTransition(5);
+                break;
+            
         }
     }
 }

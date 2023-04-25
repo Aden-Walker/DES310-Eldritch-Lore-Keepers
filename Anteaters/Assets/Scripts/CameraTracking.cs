@@ -9,6 +9,8 @@ public class CameraTracking : MonoBehaviour
     public Transform trackedObject;
     public float updateSpeed = 3;
     public Vector2 trackingOffset;
+    public float cameraEdgeX;
+
     private Vector3 offset;
 
     // Start is called before the first frame update
@@ -16,7 +18,6 @@ public class CameraTracking : MonoBehaviour
     {
         offset = (Vector3)trackingOffset;
         offset.z = transform.position.z - trackedObject.position.z;
-        
     }
 
     // Update is called once per frame after Update is called
@@ -24,24 +25,12 @@ public class CameraTracking : MonoBehaviour
     {
         //store the object's position in a variable we can edit
         Vector3 modTracked = trackedObject.position;
-        //get the current scene and store it for the switch statement
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
         //ensure the camera does not show off screen
         if (modTracked.x < 0)
             modTracked.x = 0;
-        //switch statement to stop the camera from scrolling too far. Bit of a dirty solution but eh. Screen halfwidth seems to be about 8.5
-        switch(currentScene)
-        {
-            case 1:
-                if (modTracked.x > 35.9)
-                    modTracked.x = 35.9f;
-               break;
-            case 2:
-                if (modTracked.x > 17.73)
-                    modTracked.x = 17.73f;
-                break;
-
-        }
+        //simply just takes the passed in value and makes sure the camera does not go past that point
+        if (modTracked.x > cameraEdgeX)
+            modTracked.x = cameraEdgeX;
         //lock the camera's y value, can be handled in the scene switch if we want to introduce verticality
         modTracked.y = 0;
         //move the object towards the tracked object
