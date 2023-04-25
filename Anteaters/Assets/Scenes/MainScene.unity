@@ -3690,12 +3690,12 @@ GameObject:
   - component: {fileID: 1382449331}
   - component: {fileID: 1382449330}
   m_Layer: 0
-  m_Name: Button
-  m_TagString: Untagged
+  m_Name: BranchPickupButton
+  m_TagString: pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1382449329
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3703,8 +3703,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382449328}
-  m_LocalRotation: {x: 3.2014214e-10, y: 1.0186341e-10, z: -0.7622577, w: -0.6472737}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: 3.2014214e-10, y: 1.1641532e-10, z: -0.76225775, w: -0.6472737}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3713,7 +3713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 99.327}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.31, y: 0.64}
+  m_AnchoredPosition: {x: -0.42, y: 0.3}
   m_SizeDelta: {x: 8.21, y: 3.821}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382449330

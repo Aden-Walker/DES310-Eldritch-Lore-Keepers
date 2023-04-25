@@ -73,8 +73,10 @@ public class DialogueManager : MonoBehaviour
                 if (_sentences.Count == 1 && nameText.text == "Tree")
                 {
                     pickup.animator.SetBool("BranchFallen", true);
+                    var branchButton = GameObject.Find("BranchPickupButton");
+                    RectTransform buttonPos = branchButton.GetComponent<RectTransform>();
+                    buttonPos.position.Set(920, -273, -9720);
                 }
-
 
 
                 // load next sentence
