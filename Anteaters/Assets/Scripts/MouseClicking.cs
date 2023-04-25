@@ -29,21 +29,25 @@ public class MouseClicking : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         animator.SetInteger("SceneNumber", currentScene);
 
+        // if we are in the first scene
         if (currentScene == 1)
         {
-            
+            // enter the scene
             StartCoroutine(EnterScene(transform.position, positionToMoveTo, 2));
         }
         else
         {
+            // otherwise set the variables to proper stuff
             animator.SetBool("WithChild", false);
             dismountFinished = true;
         }
     }
     void Update()
     {
+        // if the dismount isn't finished
         if (!dismountFinished)
         {
+            // check if the animator is currently in the "dismounted state" and set the childDismounted variable to that
             dismountFinished = animator.GetCurrentAnimatorStateInfo(0).IsName("ChildDismounted");
         }
         else
