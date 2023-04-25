@@ -99,6 +99,21 @@ public class MouseClicking : MonoBehaviour
 
             }
 
+            hit = Physics2D.Raycast(Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney), -Vector2.down, Mathf.Infinity, mask); //A raycast for detection
+
+            if ((hit.collider != null) && (hit.collider.name == "Path"))
+            {
+
+                if (hit.distance > 0.0f)
+                {
+
+                    fractionOfJourney = prevfoJ;
+                    moving = false;
+
+                }
+
+            }
+
             //lerp the player's positiong using the start position, the position to move to and the current fraction of the journey
             transform.position = Vector3.Lerp(startPos, positionToMoveTo, fractionOfJourney);
 
