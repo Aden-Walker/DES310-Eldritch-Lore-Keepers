@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SeperatedScene.unity
     guid: d8c89ef95f5175f43a6e53aa631c739b
   - enabled: 1
-    path: Assets/Scenes/Scene 5.unity
+    path: Assets/Scenes/Scene 4.unity
     guid: 11b2b21ec91f5c741bb638672c4340a1
   - enabled: 1
     path: Assets/Scenes/ConclusionScene.unity
