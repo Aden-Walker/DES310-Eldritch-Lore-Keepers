@@ -78,6 +78,13 @@ public class MouseClicking : MonoBehaviour
                 startPos = transform.position;
                 moving = true;
 
+                if (journeyLength < 0.01)
+                {
+
+                    moving = false;
+
+                }
+
             }
 
             //check if the journey is over
