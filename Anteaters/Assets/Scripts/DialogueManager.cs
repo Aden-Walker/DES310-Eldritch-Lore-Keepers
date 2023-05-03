@@ -63,7 +63,14 @@ public class DialogueManager : MonoBehaviour
             //check if there is a sentence to display
             if (_sentences.Count == 0)
             {
-               
+                
+                if (nameText.text == "Stones")
+                {
+
+
+
+                }
+
                 //close text box
                 EndDialogue();
             }
