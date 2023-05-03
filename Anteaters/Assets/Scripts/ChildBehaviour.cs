@@ -32,7 +32,7 @@ public class ChildBehaviour : MonoBehaviour
     void Update()
     {
         // check if the player is dismounted and if the child is already active or not
-        if(player.GetComponent<MouseClicking>().getDismount() && !active)
+        if(!player.GetComponent<Animator>().GetBool("WithChild") && !active)
         {
             // set the child to be active and initialise variables
             active = true;

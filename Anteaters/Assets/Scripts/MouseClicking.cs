@@ -14,7 +14,7 @@ public class MouseClicking : MonoBehaviour
     float speed, startTime, journeyLength; //A bunch of movement variables, moveX is how far we move in the horizontal direction, speed is how fast we go and the Conversion variables determine the rate at which speeds are divided.
     bool facingRight = true; //A variable to check if the anteater is facing right or not. Used for Flipping.
     bool moving = false;
-    bool dismountFinished = false;
+    bool choicePicked = false;
     float distCovered = 0.0f;
     float fractionOfJourney = 0.0f;
     Vector3 startPos;
@@ -39,16 +39,17 @@ public class MouseClicking : MonoBehaviour
         {
             // otherwise set the variables to proper stuff
             animator.SetBool("WithChild", false);
-            dismountFinished = true;
+            choicePicked = true;
         }
     }
     void Update()
     {
         // if the dismount isn't finished
-        if (!dismountFinished)
+        if (!choicePicked)
         {
-            // check if the animator is currently in the "dismounted state" and set the childDismounted variable to that
-            dismountFinished = animator.GetCurrentAnimatorStateInfo(0).IsName("ChildDismounted");
+            // check if the animator is either in the IdleWithChild state or the ChildDismounted state
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("ChildDismounted") || animator.GetCurrentAnimatorStateInfo(0).IsName("IdleWithChild"))
+                choicePicked = true;
         }
         else
         {
@@ -173,7 +174,7 @@ public class MouseClicking : MonoBehaviour
 
     void Flip() //Flipping code to flip sprites
     {
-
+        
         facingRight = !facingRight; //This sets facingRight to be the opposite of what it already is.
         Vector3 theScale = transform.localScale; //We get our scale from the transform.
         theScale.x *= -1; //By turning the scale from negative to positive or positive to negative we change what way the anteater is facing.
@@ -182,9 +183,9 @@ public class MouseClicking : MonoBehaviour
     }
 
 
-    public IEnumerator EnterScene(Vector3 startPosition, Vector3 endPosition,float entrySpeed = 1.0f, float fractionOfJourney = 0.0f)
+    public IEnumerator EnterScene(Vector3 startPosition, Vector3 endPosition, float entrySpeed = 1.0f, float fractionOfJourney = 0.0f)
     {
-        while(fractionOfJourney < 1)
+        while (fractionOfJourney < 1)
         {
             fractionOfJourney += Time.deltaTime / entrySpeed;
 
@@ -192,9 +193,7 @@ public class MouseClicking : MonoBehaviour
 
             yield return null;
         }
-
-        animator.SetBool("WithChild", false);
-
+        
         yield break;
     }
 
@@ -211,7 +210,7 @@ public class MouseClicking : MonoBehaviour
 
     public bool getDismount()
     {
-        return dismountFinished;
+        return choicePicked;
     }
 
 }
