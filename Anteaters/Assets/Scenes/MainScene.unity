@@ -3283,6 +3283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.9
+  rotationFactor: 0
   cam: {fileID: 101467498}
 --- !u!1 &828049070
 GameObject:
@@ -4711,6 +4712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.9
+  rotationFactor: 0
   cam: {fileID: 101467498}
 --- !u!1 &1779536883
 GameObject:
@@ -4956,6 +4958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.9
+  rotationFactor: 0
   cam: {fileID: 101467498}
 --- !u!1 &1849459191
 GameObject:

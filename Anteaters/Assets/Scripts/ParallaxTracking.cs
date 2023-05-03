@@ -33,12 +33,20 @@ public class ParallaxTracking : MonoBehaviour
         float distance = cam.position.x * parallaxFactor;
         Vector3 newPosition = new Vector3(startPos + distance, transform.position.y, transform.position.z);
         transform.position = newPosition;
+        //check if the camera is actually moving
         if (newPosition.x > 0)
         {
+            // find out the fraction of the screen that we have moved across then rotate appropriately
             float screenFraction = newPosition.x / screenEdge;
             if(screenFraction < 0.5)
             {
-
+                //transform.Rotate(new Vector3(0, 0, -angleRange * (screenFraction * 2)));
+                transform.eulerAngles = new Vector3(0,0, -angleRange * (screenFraction * 2));
+            }
+            if(screenFraction > 0.5)
+            {
+                //transform.Rotate(new Vector3(0, 0, angleRange * ((1 - screenFraction) * 2)));
+                transform.eulerAngles = new Vector3(0, 0, angleRange * ((1 -screenFraction) * 2));
             }
         }
     }
