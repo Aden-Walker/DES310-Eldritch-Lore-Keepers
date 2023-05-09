@@ -14,16 +14,21 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Animator animator;
 
+
+
     public Pickup pickup;
     public float timeDelay;
 
     private string currentText = "";
+    private MouseClicking mouseClick;
     
     // Start is called before the first frame update
     void Start()
     {
         //create blank queue object
         _sentences = new Queue<string>();
+        mouseClick = GameObject.Find("Player").GetComponent<MouseClicking>();
+      
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -42,6 +47,7 @@ public class DialogueManager : MonoBehaviour
 
         //move the text box down
         animator.SetBool("IsOpen", true);
+        mouseClick.enabled = false;
         LoadNext();
     }
 
@@ -124,5 +130,6 @@ public class DialogueManager : MonoBehaviour
     {
         //close text box
         animator.SetBool("IsOpen", false);
+        mouseClick.enabled = true;
     }
 }

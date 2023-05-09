@@ -10,9 +10,9 @@ public class MouseClicking : MonoBehaviour
     //Animator for the Anteater
     Animator animator;
 
-    Vector3 positionToMoveTo; //The position that we hope to get to.
-    float speed, startTime, journeyLength; //A bunch of movement variables, moveX is how far we move in the horizontal direction, speed is how fast we go and the Conversion variables determine the rate at which speeds are divided.
-    bool facingRight = true; //A variable to check if the anteater is facing right or not. Used for Flipping.
+    Vector3 positionToMoveTo;               //The position that we hope to get to.
+    float speed, startTime, journeyLength;  //A bunch of movement variables, moveX is how far we move in the horizontal direction, speed is how fast we go and the Conversion variables determine the rate at which speeds are divided.
+    bool facingRight = true;                //A variable to check if the anteater is facing right or not. Used for Flipping.
     bool moving = false;
     bool choicePicked = false;
     float distCovered = 0.0f;
