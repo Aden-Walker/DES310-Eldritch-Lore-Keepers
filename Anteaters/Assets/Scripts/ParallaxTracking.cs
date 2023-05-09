@@ -21,8 +21,8 @@ public class ParallaxTracking : MonoBehaviour
         //store the start position of the object
         startPos = transform.position.x;
         //initialise object's rotation if the rotation factor is 0 this changes nothing
-        angleRange = 45 * rotationFactor;
-        transform.Rotate(new Vector3(0, 0, -angleRange));
+        angleRange = 20 * rotationFactor;
+        transform.eulerAngles = new Vector3(0, 0, -angleRange);
         screenEdge = cam.GetComponent<CameraTracking>().cameraEdgeX;
     }
 
@@ -38,16 +38,11 @@ public class ParallaxTracking : MonoBehaviour
         {
             // find out the fraction of the screen that we have moved across then rotate appropriately
             float screenFraction = newPosition.x / screenEdge;
-            if(screenFraction < 0.5)
-            {
-                //transform.Rotate(new Vector3(0, 0, -angleRange * (screenFraction * 2)));
-                transform.eulerAngles = new Vector3(0,0, -angleRange * (screenFraction * 2));
-            }
-            if(screenFraction > 0.5)
-            {
-                //transform.Rotate(new Vector3(0, 0, angleRange * ((1 - screenFraction) * 2)));
-                transform.eulerAngles = new Vector3(0, 0, angleRange * ((1 -screenFraction) * 2));
-            }
+            
+            //transform.Rotate(new Vector3(0, 0, -angleRange * (screenFraction * 2)));
+            transform.eulerAngles = new Vector3(0,0, -angleRange * (screenFraction * 2));
+            
+            
         }
     }
 }
