@@ -546,7 +546,6 @@ GameObject:
   - component: {fileID: 828762869}
   - component: {fileID: 828762868}
   - component: {fileID: 828762867}
-  - component: {fileID: 828762870}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -620,22 +619,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &828762870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828762866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf8a3e752ecef04193d1be50954f5b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedObject: {fileID: 1026116176}
-  updateSpeed: 10
-  trackingOffset: {x: 0, y: 0}
-  cameraEdgeX: 0
 --- !u!1 &1026116174
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +628,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026116176}
-  - component: {fileID: 1026116175}
   m_Layer: 0
   m_Name: TrackerObject
   m_TagString: Untagged
@@ -653,22 +635,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1026116175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026116174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf8a3e752ecef04193d1be50954f5b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackedObject: {fileID: 0}
-  updateSpeed: 7
-  trackingOffset: {x: 0, y: 0}
-  cameraEdgeX: 0
 --- !u!4 &1026116176
 Transform:
   m_ObjectHideFlags: 0
@@ -895,8 +861,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281827869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.038, y: -0.0054, z: 0}
-  m_LocalScale: {x: 17.761967, y: 19.930412, z: 0.5417307}
+  m_LocalPosition: {x: -0.0286, y: -0.0054, z: 0}
+  m_LocalScale: {x: 17.895182, y: 20.569239, z: 0.5417307}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

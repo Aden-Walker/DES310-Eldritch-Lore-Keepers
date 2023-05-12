@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionSquare: {fileID: 1524912897}
   foreground: {fileID: 263076996}
-  background: {fileID: 141734383}
+  background: {fileID: 810312195}
   choiceOne: {fileID: 791185860}
   choiceTwo: {fileID: 246153887}
   choiceUI: {fileID: 8547855}

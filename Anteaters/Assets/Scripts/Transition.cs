@@ -33,10 +33,12 @@ public class Transition : MonoBehaviour
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Scene 1"))
         {
             StartCoroutine(ActivateChoices());
+            sceneToGoTo = 2;
         }
         // checks if the transition has been completed
         if (transitioned)
-        { 
+        {
+            Debug.Log("transitioning to scene " + sceneToGoTo);
             SceneManager.LoadScene(sceneToGoTo);
         }
     }
@@ -48,10 +50,7 @@ public class Transition : MonoBehaviour
         if (collision.name != "Path")
         {
             //start the coroutine to fade the choice buttons in
-            if(SceneManager.GetActiveScene().buildIndex != 1)
-                StartCoroutine(ActivateChoices());
-            else
-                StartCoroutine(TransitionScene());
+            StartCoroutine(TransitionScene());
             Debug.Log("Trigger Called");
         }
     }
@@ -137,6 +136,7 @@ public class Transition : MonoBehaviour
                 yield return null;
             }
         }
+        Debug.Log("transition Complete");
         transitioned = true;
         yield return new WaitForEndOfFrame();
     }
