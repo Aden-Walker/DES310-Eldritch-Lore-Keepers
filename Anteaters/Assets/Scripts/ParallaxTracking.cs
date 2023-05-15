@@ -29,7 +29,7 @@ public class ParallaxTracking : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //check if the camera is actually moving
         if (cam.position.x > camStartPos)
