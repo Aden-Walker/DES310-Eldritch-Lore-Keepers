@@ -24,6 +24,8 @@ public class Transition : MonoBehaviour
     void Start()
     {
         playerAnimator = player.GetComponent<Animator>();
+
+       
     }
 
 
@@ -38,8 +40,10 @@ public class Transition : MonoBehaviour
         // checks if the transition has been completed
         if (transitioned)
         {
+            
             Debug.Log("transitioning to scene " + sceneToGoTo);
             SceneManager.LoadScene(sceneToGoTo);
+         
         }
     }
 
@@ -50,7 +54,14 @@ public class Transition : MonoBehaviour
         if (collision.name != "Path")
         {
             //start the coroutine to fade the choice buttons in
-            StartCoroutine(TransitionScene());
+            if (SceneManager.GetActiveScene().buildIndex != 1)
+            {
+                StartCoroutine(ActivateChoices());
+            }
+            else
+            {
+                StartCoroutine(TransitionScene());
+            }
             Debug.Log("Trigger Called");
         }
     }
@@ -154,4 +165,6 @@ public class Transition : MonoBehaviour
         }
             
     }
+
+    
 }
