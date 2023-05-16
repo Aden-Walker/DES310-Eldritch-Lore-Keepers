@@ -151,6 +151,13 @@ public class Transition : MonoBehaviour
         transitioned = true;
         yield return new WaitForEndOfFrame();
     }
+    
+    public void GetRidOfEm()
+    {
+        choiceOne.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        choiceTwo.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+
+    }
 
     public void SetAnimatorParams(bool choices, bool child)
     {
