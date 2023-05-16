@@ -99,7 +99,7 @@ public class ConclusionScript : MonoBehaviour
         }
 
         cutsceneColour = endText.GetComponent<SpriteRenderer>().color;
-        
+        fadeAmount = 0;
 
         while(endText.GetComponent<SpriteRenderer>().color.a < 1)
         {
