@@ -13,6 +13,9 @@ public class Transition : MonoBehaviour
     public GameObject choiceOne;
     public GameObject choiceTwo;
     public GameObject choiceUI;
+    public GameObject player;
+
+    Animator playerAnimator;
     private bool transitioned = false;
     private bool buttonsFaded = false;
     private int sceneToGoTo;
@@ -20,18 +23,32 @@ public class Transition : MonoBehaviour
 
     void Start()
     {
-        
+        playerAnimator = player.GetComponent<Animator>();
+
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            sceneToGoTo = 4;
+        }
+       
     }
 
 
     // Update is called once per frame
     void Update()
     {
-     
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Scene 1"))
+        {
+            StartCoroutine(ActivateChoices());
+            sceneToGoTo = 2;
+        }
+    
         // checks if the transition has been completed
         if (transitioned)
-        { 
+        {
+            
+            Debug.Log("transitioning to scene " + sceneToGoTo);
             SceneManager.LoadScene(sceneToGoTo);
+         
         }
     }
 
@@ -41,20 +58,20 @@ public class Transition : MonoBehaviour
         //ensures there's not a transition called when it shouldn't be
         if (collision.name != "Path")
         {
-
-            //these variables are only used when the choices are being moved into the scene rather than fading, can probably be removed
-            Vector3 buttonOneStartPos = choiceOne.transform.position;
-            Vector3 buttonTwoStartPos = choiceTwo.transform.position;
-            Vector3 buttonOneEndPos = new Vector3(buttonOneStartPos.x, 0, buttonOneStartPos.z);
-            Vector3 buttonTwoEndPos = new Vector3(buttonTwoStartPos.x, 0, buttonOneEndPos.z);
-
             //start the coroutine to fade the choice buttons in
-            StartCoroutine(ActivateChoices(buttonOneStartPos, buttonOneEndPos, buttonTwoStartPos, buttonTwoEndPos));
+            if (SceneManager.GetActiveScene().buildIndex != 1 && SceneManager.GetActiveScene().buildIndex != 3)
+            {
+                StartCoroutine(ActivateChoices());
+            }
+            else
+            {
+                StartCoroutine(TransitionScene());
+            }
             Debug.Log("Trigger Called");
         }
     }
 
-    public IEnumerator ActivateChoices(Vector3 buttonOneStart, Vector3 buttonOneEnd, Vector3 buttonTwoStart, Vector3 buttonTwoEnd, int fadeSpeed = 1, float fractionOfJourney = 0.0f)
+    public IEnumerator ActivateChoices(int fadeSpeed = 1)
     {
         //pretty much the same as the transition code might modify to make the choice slide into place instead of fading
 
@@ -71,19 +88,6 @@ public class Transition : MonoBehaviour
             choiceUI.GetComponent<SpriteRenderer>().color = choiceColour;
             yield return null;
         }
-
-
-        // commented out code for having the buttons slide in instead of fading in
-
-        //while (fractionOfJourney < 1)
-        //{
-        //    fractionOfJourney += Time.deltaTime;
-
-        //    choiceOne.transform.position = Vector3.Lerp(buttonOneStart, buttonOneEnd, fractionOfJourney);
-        //    choiceTwo.transform.position = Vector3.Lerp(buttonTwoStart, buttonTwoEnd, fractionOfJourney);
-
-        //    yield return null;
-        //}
 
         buttonsFaded = true;
 
@@ -148,7 +152,31 @@ public class Transition : MonoBehaviour
                 yield return null;
             }
         }
+        Debug.Log("transition Complete");
         transitioned = true;
         yield return new WaitForEndOfFrame();
     }
+    
+    public void GetRidOfEm()
+    {
+        choiceOne.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        choiceTwo.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+
+    }
+
+    public void SetAnimatorParams(bool choices, bool child)
+    {
+        playerAnimator.SetBool("ChoicePicked", choices);
+        playerAnimator.SetBool("WithChild", child);
+
+        if (choices)
+        {
+            choiceOne.GetComponent<SpriteRenderer>().color = new Color(choiceOne.GetComponent<SpriteRenderer>().color.r, choiceOne.GetComponent<SpriteRenderer>().color.g, choiceOne.GetComponent<SpriteRenderer>().color.b, 0);
+            choiceTwo.GetComponent<SpriteRenderer>().color = new Color(choiceTwo.GetComponent<SpriteRenderer>().color.r, choiceTwo.GetComponent<SpriteRenderer>().color.g, choiceTwo.GetComponent<SpriteRenderer>().color.b, 0);
+            choiceUI.GetComponent<SpriteRenderer>().color = new Color(choiceUI.GetComponent<SpriteRenderer>().color.r, choiceUI.GetComponent<SpriteRenderer>().color.g, choiceUI.GetComponent<SpriteRenderer>().color.b, 0);
+        }
+            
+    }
+
+    
 }

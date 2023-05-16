@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Animator animator;
 
-    public Pickup pickup;
+    public GameObject animatedInteractable;
     public float timeDelay;
 
     private string currentText = "";
@@ -63,7 +63,14 @@ public class DialogueManager : MonoBehaviour
             //check if there is a sentence to display
             if (_sentences.Count == 0)
             {
-               
+                
+                if (nameText.text == "Footprints")
+                {
+
+                    animatedInteractable.GetComponent<Animator>().SetTrigger("FootprintsClicked");
+
+                }
+
                 //close text box
                 EndDialogue();
             }
@@ -72,9 +79,11 @@ public class DialogueManager : MonoBehaviour
                 //check if the last text box of the tree text box is displayed
                 if (_sentences.Count == 1 && nameText.text == "Tree")
                 {
-                    pickup.animator.SetBool("BranchFallen", true);
+                    animatedInteractable.GetComponent<Animator>().SetBool("BranchFallen", true);
+                    var branchButton = GameObject.Find("BranchPickupButton");
+                    RectTransform buttonPos = branchButton.GetComponent<RectTransform>();
+                    buttonPos.position.Set(920, -273, -9720);
                 }
-
 
 
                 // load next sentence
