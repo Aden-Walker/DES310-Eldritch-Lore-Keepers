@@ -344,6 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222035162}
   - component: {fileID: 222035163}
+  - component: {fileID: 222035164}
   m_Layer: 0
   m_Name: clouds
   m_TagString: Untagged
@@ -359,8 +360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222035161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.201932, y: -0.67087984, z: -0.23263937}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.7492, y: -0.4845, z: -0.23263937}
+  m_LocalScale: {x: 0.9667, y: 0.9582, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1765801152}
@@ -418,6 +419,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &222035164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222035161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e135ddefb3478af4c98962cd2a403c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxFactor: 0.9
+  rotationFactor: 0
+  cam: {fileID: 0}
 --- !u!1 &225169445
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,18 +734,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: StopCS
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 248793948}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: BroadcastMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: message
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &248793951
@@ -2341,7 +2345,7 @@ MonoBehaviour:
   nameText: {fileID: 1354750339}
   dialogueText: {fileID: 882633875}
   animator: {fileID: 1086727457}
-  pickup: {fileID: 0}
+  animatedInteractable: {fileID: 586345961}
   timeDelay: 0.01
 --- !u!4 &956885054
 Transform:
@@ -2888,18 +2892,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 586345962}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: FootprintsClicked
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1214442354}
