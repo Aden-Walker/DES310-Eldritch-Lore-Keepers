@@ -9,6 +9,7 @@ public class ConclusionScript : MonoBehaviour
     public GameObject player;
     public GameObject child;
     public GameObject cutsceneImg;
+    public GameObject endText;
 
     private AudioSource audioController;
   
@@ -93,7 +94,18 @@ public class ConclusionScript : MonoBehaviour
 
             cutsceneColour = new Color(cutsceneColour.r, cutsceneColour.g, cutsceneColour.b, fadeAmount);
             cutsceneImg.GetComponent<SpriteRenderer>().color = cutsceneColour;
+            
             yield return null;
+        }
+
+        cutsceneColour = endText.GetComponent<SpriteRenderer>().color;
+        
+
+        while(endText.GetComponent<SpriteRenderer>().color.a < 1)
+        {
+            fadeAmount = cutsceneColour.a + (fadeSpeed * Time.deltaTime);
+            cutsceneColour = new Color(cutsceneColour.r, cutsceneColour.g, cutsceneColour.b, fadeAmount);
+            endText.GetComponent<SpriteRenderer>().color = cutsceneColour;
         }
 
         cutsceneFaded = true;
