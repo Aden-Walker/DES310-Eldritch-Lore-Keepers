@@ -3799,7 +3799,7 @@ MonoBehaviour:
   nameText: {fileID: 1617432080}
   dialogueText: {fileID: 159596219}
   animator: {fileID: 4203081}
-  pickup: {fileID: 1272774108}
+  animatedInteractable: {fileID: 1272774104}
   timeDelay: 0.01
 --- !u!1 &1382449328
 GameObject:

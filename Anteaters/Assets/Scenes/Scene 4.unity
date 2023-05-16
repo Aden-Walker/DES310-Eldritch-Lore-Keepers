@@ -724,7 +724,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1930164011
-  m_SortingOrder: 4
+  m_SortingOrder: 30
   m_TargetDisplay: 0
 --- !u!224 &68740381
 RectTransform:
@@ -4014,7 +4014,7 @@ MonoBehaviour:
   nameText: {fileID: 1617432080}
   dialogueText: {fileID: 159596219}
   animator: {fileID: 4203081}
-  pickup: {fileID: 0}
+  animatedInteractable: {fileID: 0}
   timeDelay: 0.01
 --- !u!1 &1453548269
 GameObject:
