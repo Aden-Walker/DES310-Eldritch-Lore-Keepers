@@ -57,10 +57,10 @@ public class ChoiceButtons : MonoBehaviour
                 transitionArrow.GetComponent<Transition>().handleTransition(4);
                 break;
             case 4:
-                transitionArrow.GetComponent<Transition>().handleTransition(5);
+                GetComponent<Scene5CutsceneHandler>().GetAnimator().SetTrigger("DogChoice");
                 break;
             case 5:
-                transitionArrow.GetComponent<Transition>().handleTransition(5);
+                GetComponent<Scene5CutsceneHandler>().GetAnimator().SetTrigger("TractorChoice");
                 break;
             
         }
