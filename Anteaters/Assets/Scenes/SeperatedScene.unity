@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxFactor: 0.9
   rotationFactor: 0
-  cam: {fileID: 0}
+  cam: {fileID: 288552630}
 --- !u!1 &225169445
 GameObject:
   m_ObjectHideFlags: 0
